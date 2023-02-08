@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node*prev;
+    struct node*next;
+};
+void linkedlistTraversal(struct node*head,struct node*fourth){
+    struct node*ptr=head;
+    printf("simple traversal in doubly linked list\n");
+    while(ptr!=NULL){
+        printf("%d\n",ptr->data);
+        ptr=ptr->next;
+    }
+    struct node*ftr=fourth;
+    printf("reverse traversal in doubly linked list\n");
+    while(ftr!=NULL){
+        printf("%d\n",ftr->data);
+        ftr=ftr->prev;
+    }
+}
+struct node*insertAtfirst(struct node*head,int data){
+    struct node*ptr=(struct node*)malloc(sizeof(struct node));
+    ptr->prev=NULL;
+    ptr->next=head;
+    ptr->data=data;
+    return ptr;
+    
+}
+int main(){
+    struct node*head;
+    struct node*second;
+    struct node*third;
+    struct node*fourth;
+    head=(struct node*)malloc(sizeof(struct node));
+       second=(struct node*)malloc(sizeof(struct node));
+          third=(struct node*)malloc(sizeof(struct node));
+             fourth=(struct node*)malloc(sizeof(struct node));
+             head->data=7;
+             head->prev=NULL;
+             head->next=second;
+             second->data=11;
+             second->prev=head;
+             second->next=third;
+             third->data=19;
+             third->prev=second;
+             third->next=fourth;
+             fourth->data=23;
+             fourth->prev=third;
+             fourth->next=NULL;
+             linkedlistTraversal(head,fourth);
+             head=insertAtfirst(head,55);
+             linkedlistTraversal(head,fourth);
+             return 0;
+}
